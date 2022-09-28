@@ -7,25 +7,36 @@
       <title>My Todo App</title>
   </head>
   <body>
+
       <input id="todo-title" type="text" />
       <button onclick="addTodo()">Add Todo</button>
+      <div id='todo-list'></div>
       <script>
-          let todos = ['Get groceries', 'Wash Car' ];
-
-          todos.forEach(function(todoTitle){
-
-              //below is how to create a div element( or tag) just like what we have in HTML
-              let element = document.createElement ('div');
-              //below is how to give the element created (the div element here) a value or change the value of the element
-              element.innerText = todoTitle;
-              //how to put the element on the page(i.e. the body) (the div element in this case)
-              document.body.appendChild(element)
-             });    
+          let todos = ['Get groceries', 'Wash Car', 'Make Dinner'];
           
+          render();
+
           function addTodo() {
             let textbox = document.getElementById('todo-title');
             let title = textbox.value;
             todos.push(title);
+
+            render();
+
+          }
+
+
+          function render() {      
+              todos.forEach(function(todoTitle){
+              //below is how to create a div element( or tag) just like what we have in HTML
+              let element = document.createElement ('div');
+              //below is how to give the element created (the div element here) a value or change the value of the element
+              element.innerText = todoTitle;
+              //put the element in div instead of the body
+              let todoList = document.getElementById('todo-list');
+              //how to put the element on the page(i.e. the div elemnt wit Id)
+              todoList.appendChild(element);
+              }); 
           }
 
       </script>
