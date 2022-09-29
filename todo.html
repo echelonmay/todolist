@@ -9,32 +9,54 @@
   <body>
 
       <input id="todo-title" type="text" />
-      <button onclick="addTodo()">Add Todo</button>
+      <input id = "date-picker" type="date" />
+      <button onclick="addTodo()"> Add Todo </button>
       <div id='todo-list'></div>
       <script>
-          let todos = ['Get groceries', 'Wash Car', 'Make Dinner'];
-          
+          const todos = [{
+            title: 'Get groceries',
+            dueDate: '2022-10-03'
+          }, {
+            title: 'Wash Car',
+            dueDate: '2022-10-01'
+          }, {
+            title:'Make Dinner',
+            dueDate: '2022-10-02'
+          }];
+            
           render();
 
           function addTodo() {
-            let textbox = document.getElementById('todo-title');
-            let title = textbox.value;
-            todos.push(title);
+            const textbox = document.getElementById('todo-title');
+            const title = textbox.value;
+            
+            const datePicker = document.getElementById('date-picker');
+            const dueDate= datePicker.value; 
+            todos.push({
+              title: title,
+              dueDate: dueDate
+            });
 
             render();
 
           }
 
 
-          function render() {      
+          function render() {  
+            
+              // reset our list
+              document.getElementById('todo-list').innerHTML ='';
+
+              // iterate over each item (called todoTitle) in the todos array
               todos.forEach(function(todoTitle){
-              //below is how to create a div element( or tag) just like what we have in HTML
-              let element = document.createElement ('div');
-              //below is how to give the element created (the div element here) a value or change the value of the element
+              // create empty div tags for each item in the todos array and save in var 'element'
+              const element = document.createElement ('div');
+              // put each items in the todos array in the div tag created
               element.innerText = todoTitle;
-              //put the element in div instead of the body
-              let todoList = document.getElementById('todo-list');
-              //how to put the element on the page(i.e. the div elemnt wit Id)
+              // getting hold of the parent div created in HTML with the id todo-list created 
+              const todoList = document.getElementById('todo-list');
+              // put the element(which is a div) in another div(parent div) created in HTML (nested tags)
+              // put the element on the page(i.e. the div element wit Id 'todo-list')
               todoList.appendChild(element);
               }); 
           }
