@@ -13,51 +13,100 @@
       <button onclick="addTodo()"> Add Todo </button>
       <div id='todo-list'></div>
       <script>
-          const todos = [{
+          let todos = [{
             title: 'Get groceries',
-            dueDate: '2022-10-03'
-          }, {
+            dueDate: '2022-10-03',
+            id: 'id1'
+          }, 
+          
+          {
             title: 'Wash Car',
-            dueDate: '2022-10-01'
-          }, {
+            dueDate: '2022-10-01',
+            id: 'id2'
+          }, 
+          
+          {
             title:'Make Dinner',
-            dueDate: '2022-10-02'
+            dueDate: '2022-10-02',
+            id: 'id3'
           }];
             
           render();
 
+          
           function addTodo() {
             const textbox = document.getElementById('todo-title');
             const title = textbox.value;
             
             const datePicker = document.getElementById('date-picker');
-            const dueDate= datePicker.value; 
+            const dueDate= datePicker.value;
+            
+            const id = '' + new Date().getTime();
+
+
             todos.push({
               title: title,
-              dueDate: dueDate
+              dueDate: dueDate,
+              id: id 
             });
 
             render();
 
+          } 
+
+          function removeTodo(idToDelete) {
+            todos = todos.filter(function(todo){
+
+            // If the id of this todo matches idToDelete, return false;
+            // For everything else, return true
+
+            if (todo.id === idToDelete){
+              return false;
+            } else{
+              return true;
+            }
+
+            });
+            
           }
 
 
+          function deleteTodo(event){
+            const deleteButton = event.target;
+            const idToDelete = deleteButton.id;
+
+            removeTodo(idToDelete);
+            render();
+          }
+
+    
+
+          // View
           function render() {  
             
               // reset our list
               document.getElementById('todo-list').innerHTML ='';
 
               // iterate over each item (called todoTitle) in the todos array
-              todos.forEach(function(todoTitle){
-              // create empty div tags for each item in the todos array and save in var 'element'
-              const element = document.createElement ('div');
-              // put each items in the todos array in the div tag created
-              element.innerText = todoTitle;
-              // getting hold of the parent div created in HTML with the id todo-list created 
-              const todoList = document.getElementById('todo-list');
-              // put the element(which is a div) in another div(parent div) created in HTML (nested tags)
-              // put the element on the page(i.e. the div element wit Id 'todo-list')
-              todoList.appendChild(element);
+              todos.forEach(function(todo){
+                // create empty div tags for each item in the todos array and save in div 'element'
+                const element = document.createElement ('div');
+                // put each items in the todos array in the div tag created
+                element.innerText = todo.title + " " + todo.dueDate;
+
+                // add a delete button/functionality to the todo list
+                const deleteButton = document.createElement('button');
+                deleteButton.innerText = 'Delete';
+                deleteButton.style = 'margin-left : 12px;';
+                deleteButton.onclick = deleteTodo;
+                deleteButton.id = todo.id;
+                element.appendChild(deleteButton);
+
+                // getting hold of the parent div created in HTML with the id todo-list created 
+                const todoList = document.getElementById('todo-list');
+                // put the element(which is a div) in another div(parent div) created in HTML (nested tags)
+                // put the element on the page(i.e. the div element wit Id 'todo-list')
+                todoList.appendChild(element);
               }); 
           }
 
