@@ -1,0 +1,57 @@
+h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+  }
+
+body{
+    /* This style below will be inherited */
+    font-family: Roboto, Arial;
+    padding-top: 80px;
+    padding-bottom: 400px;
+    padding-left: 96px;
+    padding-right: 24px;
+    background-color: rgb(240, 240, 240);
+  }
+
+  
+#todo-title {
+    margin-bottom: 50px;
+    font-size: 14px;
+    background-color: rgb(227, 65, 64);
+    color: white;
+    text-align: center;
+    padding-top: 18px;
+    padding-bottom: 18px;
+
+}
+
+#todo-button {
+    height: 40px;
+    width: 66px;
+    background-color: rgb(240, 240, 
+    240);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(192, 192, 192);
+    margin-left: -1px;
+    margin-right: 10px;
+    position: relative;
+
+}
+
+#date-picker {
+    height: 40px;
+    width: 66px;
+    background-color: rgb(240, 240, 
+    240);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(192, 192, 192);
+    margin-left: -1px;
+    margin-right: 10px;
+    position: relative;
+
+}
+
+
