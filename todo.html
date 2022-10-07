@@ -5,12 +5,18 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>My Todo App</title>
+      
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap" 
+      rel="stylesheet">
+      <link rel = "stylesheet" href = "todo_styling.css">
   </head>
   <body>
-
+      <h1>My TodoLists For Each Day </h1>
       <input id="todo-title" type="text" />
       <input id = "date-picker" type="date" />
-      <button onclick="addTodo()"> Add Todo </button>
+      <button id="todo-button" onclick="addTodo()"> Add Todo </button>
       <div id='todo-list'></div>
       <script>
 
@@ -25,8 +31,10 @@
           // Check if it's an array
           if (Array.isArray(savedTodos)) {
             todos = savedTodos;
-          } else{
-              todos =  [{
+          } 
+          else 
+          {
+            todos =  [{
               title: 'Get groceries',
               dueDate: '2022-10-03',
               id: 'id1'
@@ -44,10 +52,9 @@
               id: 'id3'
             }];
 
-     
           }
 
-          render();
+        render();
 
          // Codes that Create todo.
 
@@ -66,8 +73,6 @@
 
 
           // Codes that Delete todo.
-
-          
           function removeTodo(idToDelete) {
             todos = todos.filter(function(todo){
 
@@ -86,12 +91,10 @@
           }
 
           function saveTodos() {
-            localStorage.setItem('todos', JSON.stringify(todos));
-
+            localStorage.setItem('todos', JSON.stringify(todos)); 
           }
 
-
-        render();
+          render();
 
           // Controller Section
           function addTodo() {
@@ -134,13 +137,14 @@
                 // add a delete button/functionality to the todo list
                 const deleteButton = document.createElement('button');
                 deleteButton.innerText = 'Delete';
-                deleteButton.style = 'margin-left : 12px;';
+                deleteButton.style = 'margin-left : 12px; color: red; ';
                 deleteButton.onclick = deleteTodo;
                 deleteButton.id = todo.id;
                 element.appendChild(deleteButton);
 
                 // getting hold of the parent div created in HTML with the id todo-list created 
                 const todoList = document.getElementById('todo-list');
+                todoList.style = 'color : blue; margin-left : 12px;';
                 // put the element(which is a div) in another div(parent div) created in HTML (nested tags)
                 // put the element on the page(i.e. the div element wit Id 'todo-list')
                 todoList.appendChild(element);
